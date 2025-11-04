@@ -37,7 +37,7 @@
                 </div>
     </div>
 
-    <script>
+   <script>
         function calculate() {
             // 从输入框获取值，并转换为浮点数
             const P2 = parseFloat(document.getElementById('P2').value);
@@ -49,6 +49,23 @@
 
             // 将结果显示在页面上，保留两位小数
             document.getElementById('result').textContent = result.toFixed(2);
+            
+            // 更新公式显示
+            document.getElementById('currentFormula').textContent = 
+                `C42 = 60 + (${P2}/(${I2}/10) × 1/3 + ${R2}/(${I2}×2) × 2/3) × 40`;
+            
+            // 显示详细计算步骤
+            const step1 = (P2 / (I2 / 10) * 1 / 3).toFixed(2);
+            const step2 = (R2 / (I2 * 2) * 2 / 3).toFixed(2);
+            const step3 = (parseFloat(step1) + parseFloat(step2)).toFixed(2);
+            const step4 = (parseFloat(step3) * 40).toFixed(2);
+            
+ document.getElementById('calculationSteps').innerHTML = 
+            `1. XXXX (P2): ${P2} ÷ (${I2} ÷ 10) × 1/3 = ${step1}<br>
+             2. XXXX (R2): ${R2} ÷ (${I2} × 2) × 2/3 = ${step2}<br>
+             3. 两部分相加: ${step1} + ${step2} = ${step3}<br>
+             4. 乘以权重: ${step3} × 40 = ${step4}<br>
+             5. 加上基础值: 60 + ${step4} = ${result.toFixed(2)}`;
         }
     </script>
 </body>
