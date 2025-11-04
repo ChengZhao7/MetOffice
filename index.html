@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C42 指数计算器</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>C42 指数计算器</h1>
+        <div class="input-group">
+            <label for="P2">P2:</label>
+            <input type="number" id="P2" value="1" step="any">
+        </div>
+        <div class="input-group">
+            <label for="I2">I2:</label>
+            <input type="number" id="I2" value="49" step="any">
+        </div>
+        <div class="input-group">
+            <label for="R2">R2:</label>
+            <input type="number" id="R2" value="86" step="any">
+        </div>
+        <button onclick="calculate()">计算 C42</button>
+        <div class="result">
+            <h2>结果: <span id="result">--</span></h2>
+        </div>
+    </div>
+
+    <script>
+        function calculate() {
+            // 从输入框获取值，并转换为浮点数
+            const P2 = parseFloat(document.getElementById('P2').value);
+            const I2 = parseFloat(document.getElementById('I2').value);
+            const R2 = parseFloat(document.getElementById('R2').value);
+
+            // 执行计算
+            const result = 60 + (P2 / (I2 / 10) * 1 / 3 + R2 / (I2 * 2) * 2 / 3) * 40;
+
+            // 将结果显示在页面上，保留两位小数
+            document.getElementById('result').textContent = result.toFixed(2);
+        }
+    </script>
+</body>
+</html>
