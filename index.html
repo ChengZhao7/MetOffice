@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>C42 指数计算器</title>
+    <title>C42 数值计算器</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -24,6 +24,15 @@
         <button onclick="calculate()">计算 C42</button>
         <div class="result">
             <h2>结果: <span id="result">--</span></h2>
+             <!-- 公式显示区域 -->
+            <div class="formula-section">
+                <h3>计算公式</h3>
+                <div class="formula" id="currentFormula">
+                    C42 = 60 + (P2/(I2/10) × 1/3 + R2/(I2×2) × 2/3) × 40
+                </div>
+                <div class="formula-breakdown">
+                    <p><b>当前计算过程：</b></p>
+                    <p id="calculationSteps">输入数值后显示详细计算步骤</p>
         </div>
     </div>
 
