@@ -4,40 +4,131 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>C42 数值计算器</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 基础样式 */
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        
+        .input-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        /* 公式显示区域样式 */
+        .formula-section {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f4fd;
+            border-radius: 4px;
+            border-left: 4px solid #2196F3;
+        }
+        
+        .formula-section h3 {
+            margin-top: 0;
+            color: #2196F3;
+        }
+        
+        .formula {
+            background: white;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .formula-breakdown {
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>C42 数值计算器</h1>
         <div class="input-group">
-            <label for="P2"><b>xxxxxxxx (P2) </b>:</label>
+            <label for="P2"><b>XXXX (P2) </b>:</label>
             <input type="number" id="P2" value="1" step="any">
         </div>
         <div class="input-group">
-            <label for="I2"><b>xxxxxxxx (I2) </b></label>
+            <label for="I2"><b>XXXX (I2) </b>:</label>
             <input type="number" id="I2" value="49" step="any">
         </div>
         <div class="input-group">
-            <label for="R2"><b>xxxxxxxx (R2) </b></label>
+            <label for="R2"><b>XXXX (R2) </b>:</label>
             <input type="number" id="R2" value="86" step="any">
         </div>
         <button onclick="calculate()">计算 C42</button>
         <div class="result">
             <h2>结果: <span id="result">--</span></h2>
-             <!-- 公式显示区域 -->
-            <div class="formula-section">
-                <h3>计算公式</h3>
-                <div class="formula" id="currentFormula">
-                    C42 = 60 + (P2/(I2/10) × 1/3 + R2/(I2×2) × 2/3) × 40
-                </div>
-                <div class="formula-breakdown">
-                    <p><b>当前计算过程：</b></p>
-                    <p id="calculationSteps">输入数值后显示详细计算步骤</p>
         </div>
-                </div>
+        
+        <!-- 公式显示区域 -->
+        <div class="formula-section">
+            <h3>计算公式</h3>
+            <div class="formula" id="currentFormula">
+                C42 = 60 + (P2/(I2/10) × 1/3 + R2/(I2×2) × 2/3) × 40
+            </div>
+            <div class="formula-breakdown">
+                <p><b>当前计算过程：</b></p>
+                <p id="calculationSteps">输入数值后显示详细计算步骤</p>
+            </div>
+        </div>
     </div>
 
-   <script>
+    <script>
         function calculate() {
             // 从输入框获取值，并转换为浮点数
             const P2 = parseFloat(document.getElementById('P2').value);
@@ -60,12 +151,12 @@
             const step3 = (parseFloat(step1) + parseFloat(step2)).toFixed(2);
             const step4 = (parseFloat(step3) * 40).toFixed(2);
             
- document.getElementById('calculationSteps').innerHTML = 
-            `1. XXXX (P2): ${P2} ÷ (${I2} ÷ 10) × 1/3 = ${step1}<br>
-             2. XXXX (R2): ${R2} ÷ (${I2} × 2) × 2/3 = ${step2}<br>
-             3. 两部分相加: ${step1} + ${step2} = ${step3}<br>
-             4. 乘以权重: ${step3} × 40 = ${step4}<br>
-             5. 加上基础值: 60 + ${step4} = ${result.toFixed(2)}`;
+            document.getElementById('calculationSteps').innerHTML = 
+                `1. P2部分: ${P2} ÷ (${I2} ÷ 10) × 1/3 = ${step1}<br>
+                 2. R2部分: ${R2} ÷ (${I2} × 2) × 2/3 = ${step2}<br>
+                 3. 两部分相加: ${step1} + ${step2} = ${step3}<br>
+                 4. 乘以权重: ${step3} × 40 = ${step4}<br>
+                 5. 加上基础值: 60 + ${step4} = ${result.toFixed(2)}`;
         }
     </script>
 </body>
